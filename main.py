@@ -20,6 +20,10 @@ ENVIRONMENT = 'sandbox'
 def hello_world():
     return render_template("index.html")
 
+@app.route("/health")
+def health():
+    return
+
 @app.route("/testPDF")
 def test_PDF():
     print ('test 1')
