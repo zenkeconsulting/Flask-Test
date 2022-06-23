@@ -1,13 +1,20 @@
-FROM python:3.6.8-alpine3.9
+FROM python:slim-buster
 
-WORKDIR /var/www/
+COPY . /srv/flask_app
 
-ADD . /var/www/
-RUN apk add --no-cache build-base libffi-dev openssl-dev ncurses-dev
+WORKDIR /srv/flask_app
 
-RUN python -m pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN apt-get clean \
+    && apt-get -y update
 
-EXPOSE 8080
+RUN apt-get -y install nginx \
+    && apt-get -y install python3-dev \
+    && apt-get -y install build-essential
 
-CMD [ "gunicorn", "-w", "4", "--bind", "127.0.0.1:8080", "wsgi:app"]
+RUN pip install -r requirements.txt --src /usr/local/src
+
+COPY nginx.conf /etc/nginx
+
+RUN chmod +x ./start.sh
+
+CMD ["./start.sh"]
