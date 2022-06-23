@@ -8,6 +8,6 @@ RUN apk add --no-cache build-base libffi-dev openssl-dev ncurses-dev
 RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-EXPOSE 5000
+EXPOSE 8080
 
-CMD [ "gunicorn", "-w", "4", "--bind", "0.0.0.0:5000", "wsgi:app"]
+CMD [ "gunicorn", "-w", "4", "--bind", "127.0.0.1:8080", "wsgi:app"]
