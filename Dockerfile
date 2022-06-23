@@ -6,7 +6,7 @@ ADD . /var/www/
 RUN apk add --no-cache build-base libffi-dev openssl-dev ncurses-dev
 
 RUN python -m pip install --upgrade pip
-RUN pip install -r requirements.txt // gunicorn is install inside requirements.txt
+RUN pip install -r requirements.txt
 
 EXPOSE 5000
 
