@@ -22,7 +22,7 @@ def hello_world():
 
 @app.route("/health")
 def health():
-    return
+    return ('', 204)
 
 @app.route("/testPDF")
 def test_PDF():
