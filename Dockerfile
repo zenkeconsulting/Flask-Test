@@ -16,6 +16,8 @@ RUN pip install -r requirements.txt --src /usr/local/src
 
 COPY nginx.conf /etc/nginx
 
+RUN chown -R www-data:www-data ./templates
+
 RUN chmod +x ./start.sh
 
 CMD ["./start.sh"]
