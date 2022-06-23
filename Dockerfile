@@ -9,7 +9,8 @@ RUN apt-get clean \
 
 RUN apt-get -y install nginx \
     && apt-get -y install python3-dev \
-    && apt-get -y install build-essential
+    && apt-get -y install build-essential \
+    && apt-get -y install wkhtmltopdf
 
 RUN pip install -r requirements.txt --src /usr/local/src
 
