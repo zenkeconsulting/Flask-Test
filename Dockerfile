@@ -1,17 +1,13 @@
-FROM python:3.8-slim-buster
+FROM python:3.6.8-alpine3.9
 
-RUN apt-get update && apt-get install -y \
-  wkhtmltopdf \
-  && rm -rf /var/lib/apt/lists/*
+WORKDIR /var/www/
 
-WORKDIR /python-docker
+ADD . /var/www/
+RUN apk add --no-cache build-base libffi-dev openssl-dev ncurses-dev
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
-
-COPY . .
+RUN python -m pip install --upgrade pip
+RUN pip install -r requirements.txt // gunicorn is install inside requirements.txt
 
 EXPOSE 5000
 
-
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "wsgi:app"]
+CMD [ "gunicorn", "-w", "4", "--bind", "0.0.0.0:5000", "wsgi:app"]
