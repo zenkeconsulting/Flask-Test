@@ -13,7 +13,7 @@ services:
       com.docker.devenvironments.compose: "true"
       com.docker.devenvironments.compose.build: "true"
       com.docker.devenvironments.container: "true"
-      com.docker.devenvironments.name: vue-flask-docker-test-wonderful_hermann
+      com.docker.devenvironments.name: vue-flask-docker-test-hardcore_pare
     networks:
       default: null
     ports:
@@ -27,11 +27,11 @@ services:
       source: C:\Users\LeeZenke\Repos\vue-flask-docker-test
       target: /com.docker.devenvironments.code
     - type: volume
-      source: vsCodeServerVolume-vue-flask-docker-test-wonderful_hermann-backend
+      source: vsCodeServerVolume-vue-flask-docker-test-hardcore_pare-backend
       target: /home/vscode
 networks:
   default:
-    name: vue-flask-docker-test-wonderful_hermann_default
+    name: vue-flask-docker-test-hardcore_pare_default
 volumes:
-  vsCodeServerVolume-vue-flask-docker-test-wonderful_hermann-backend:
-    name: vsCodeServerVolume-vue-flask-docker-test-wonderful_hermann-backend
+  vsCodeServerVolume-vue-flask-docker-test-hardcore_pare-backend:
+    name: vsCodeServerVolume-vue-flask-docker-test-hardcore_pare-backend
