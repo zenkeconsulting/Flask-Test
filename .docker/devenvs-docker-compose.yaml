@@ -1,0 +1,37 @@
+services:
+  backend:
+    build:
+      context: C:\Users\LeeZenke\Repos\vue-flask-docker-test\backend
+      dockerfile: C:\Users\LeeZenke\Repos\vue-flask-docker-test\backend\Dockerfile
+      target: development
+    command:
+    - infinity
+    entrypoint:
+    - sleep
+    init: true
+    labels:
+      com.docker.devenvironments.compose: "true"
+      com.docker.devenvironments.compose.build: "true"
+      com.docker.devenvironments.container: "true"
+      com.docker.devenvironments.name: vue-flask-docker-test-wonderful_hermann
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: 80
+      protocol: tcp
+    stop_signal: SIGKILL
+    volumes:
+    - type: bind
+      source: C:\Users\LeeZenke\Repos\vue-flask-docker-test
+      target: /com.docker.devenvironments.code
+    - type: volume
+      source: vsCodeServerVolume-vue-flask-docker-test-wonderful_hermann-backend
+      target: /home/vscode
+networks:
+  default:
+    name: vue-flask-docker-test-wonderful_hermann_default
+volumes:
+  vsCodeServerVolume-vue-flask-docker-test-wonderful_hermann-backend:
+    name: vsCodeServerVolume-vue-flask-docker-test-wonderful_hermann-backend
