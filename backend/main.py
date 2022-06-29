@@ -40,7 +40,7 @@ def test_PDF():
             'interest_rate':interest_rate})
 
 
-    templateLoader = jinja2.FileSystemLoader(searchpath="./templates/")
+    templateLoader = jinja2.FileSystemLoader(searchpath="./backend/templates/")
     templateEnv = jinja2.Environment(loader=templateLoader)
     TEMPLATE_FILE = "testPDF.html"
     template = templateEnv.get_template(TEMPLATE_FILE)
@@ -48,7 +48,7 @@ def test_PDF():
     for d in data_frames:
         outputText = template.render(df=d['df'],
                 interest_rate=d['interest_rate'])
-        html_file = open('./templates/' + str(int(d['interest_rate'] * 100)) + '.html', 'w', encoding='utf-8')
+        html_file = open('./backend/templates/' + str(int(d['interest_rate'] * 100)) + '.html', 'w', encoding='utf-8')
         html_file.write(outputText)
         html_file.close()
 
@@ -60,7 +60,7 @@ def display_test_PDF():
 
 @app.route("/makePDF")
 def make_PDF():
-    pdfkit.from_file('./templates/1.html', './templates/1.pdf')
+    pdfkit.from_file('./backend/templates/1.html', './backend/templates/1.pdf')
     return render_template("1.html")
 
 

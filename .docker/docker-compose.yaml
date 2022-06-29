@@ -6,3 +6,10 @@ services:
       target: development
     ports:
       - 80:80
+
+  frontend:
+    build:
+      context: frontend
+    ports:
+      - 8080:80
+    

@@ -1,8 +1,8 @@
 FROM python:slim-buster as build
 
-COPY . /srv/flask_app
+COPY . /srv/flask_app/backend
 
-WORKDIR /srv/flask_app
+WORKDIR /srv/flask_app/backend
 
 RUN apt-get clean \
     && apt-get -y update
@@ -13,6 +13,8 @@ RUN apt-get -y install nginx \
     && apt-get -y install wkhtmltopdf
 
 FROM build AS development
+
+# for dev environment
 RUN apt-get -y install git
 
 RUN pip install -r requirements.txt --src /usr/local/src
